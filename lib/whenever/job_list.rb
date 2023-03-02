@@ -34,11 +34,11 @@ module Whenever
     end
 
     def method_missing(name, *args, &block)
-      @set_variables.has_key?(name) ? @set_variables[name] : super
+      @set_variables&.has_key?(name) ? @set_variables[name] : super
     end
 
     def self.respond_to?(name, include_private = false)
-      @set_variables.has_key?(name) || super
+      @set_variables&.has_key?(name) || super
     end
 
     def env(variable, value)
